@@ -22,7 +22,6 @@ public class Shop {
 	private String advice;
 
 
-
 	private Area area;
 	private PersonInfo owner;
 	private ShopCategory shopCategory;

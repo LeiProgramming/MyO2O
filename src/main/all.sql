@@ -71,11 +71,13 @@
 #     constraint fk_shop_category_self foreign key (parent_id) references tb_shop_category(shop_category_id)
 # )ENGINE = InnoDB AUTO_INCREMENT=1 default charset =utf8;
 
+# drop table if exists tb_shop;
 # create table tb_shop(
 #     shop_id int(11) not null auto_increment,
 #     owner_id int(10) not null comment '店铺创建人',
 #     area_id int(5) default null ,
 #     shop_category_id int(11) default null ,
+#     shop_img varchar(2000) default null ,
 #     shop_name varchar(256) not null ,
 #     shop_desc varchar(1024) default null ,
 #     shop_addr varchar(256) default null ,
