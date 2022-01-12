@@ -2,18 +2,17 @@ package com.peter.o2o.util;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-
 import net.coobird.thumbnailator.Thumbnails;
 
 import net.coobird.thumbnailator.geometry.Positions;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
 
 import javax.imageio.ImageIO;
 
@@ -63,9 +62,9 @@ public class ImageUtil {
 		return relativeAddr;
 	}
 
-	public static List<String> generateNormalImgs(List<CommonsMultipartFile> imgs, String targetAddr) {
+	public static List<String> generateNormalImg(List<CommonsMultipartFile> imgs, String targetAddr) {
 		int count = 0;
-		List<String> relativeAddrList = new ArrayList<String>();
+		List<String> relativeAddrList = new ArrayList<>();
 		if (imgs != null && imgs.size() > 0) {
 			makeDirPath(targetAddr);
 			for (CommonsMultipartFile img : imgs) {
