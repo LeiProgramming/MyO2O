@@ -21,7 +21,7 @@ public class ShopServiceImpl implements ShopService {
 
     @Override
     @Transactional
-    public ShopExecution addShop(Shop shop, CommonsMultipartFile shopImg) {
+    public ShopExecution addShop(Shop shop, File shopImg) {
         //空值判断
         if (shop == null) {
             return new ShopExecution(ShopStateEnum.NULL_SHOP);

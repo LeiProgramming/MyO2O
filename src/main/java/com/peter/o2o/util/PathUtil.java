@@ -1,6 +1,5 @@
 package com.peter.o2o.util;
 
-import java.util.Locale;
 
 public class PathUtil {
     private static String seperator = System.getProperty("file.separator");
