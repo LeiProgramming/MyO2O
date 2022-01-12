@@ -35,7 +35,7 @@ public class ShopManagementController {
 
     @RequestMapping(value = "/registershop", method = RequestMethod.POST)
     @ResponseBody
-    private Map<String, Object> registerShop(HttpServletRequest request) {
+    private Map<String, Object> registerShop(HttpServletRequest request) throws IOException {
         Map<String, Object> modelMap = new HashMap<>();
         // 1.接收并转化相应的参数，包括店铺信息和图片信息
         String shopStr = HttpServletRequestUtil.getString(request, "shopStr");
@@ -61,24 +61,10 @@ public class ShopManagementController {
         //2.注册店铺
         if (shop != null && shopImg != null) {
             PersonInfo owner = new PersonInfo();
+            //Session TODO
             owner.setUserId(1L);
             shop.setOwner(owner);
-            File shopImgFile = new File(PathUtil.getImgBasePath() + ImageUtil.getRandomFileName());
-            try {
-                shopImgFile.createNewFile();
-            } catch (IOException e) {
-                modelMap.put("success", false);
-                modelMap.put("errMsg", e.getMessage());
-                return modelMap;
-            }
-            try {
-                inputStreamToFile(shopImg.getInputStream(), shopImgFile);
-            } catch (IOException e) {
-                modelMap.put("success", false);
-                modelMap.put("errMsg", e.getMessage());
-                return modelMap;
-            }
-            ShopExecution se = shopService.addShop(shop, shopImgFile);
+            ShopExecution se = shopService.addShop(shop, shopImg.getInputStream(), shopImg.getOriginalFilename());
             if (se.getState() == ShopStateEnum.CHECK.getState()) {
                 modelMap.put("success", true);
             } else {
@@ -93,29 +79,29 @@ public class ShopManagementController {
         }
     }
 
-    private static void inputStreamToFile(InputStream ins, File file) {
-        OutputStream os = null;
-        try {
-            os = new FileOutputStream(file);
-            int bytesRead = 0;
-            byte[] buffer = new byte[1024];
-            while ((bytesRead = ins.read(buffer)) != -1) {
-                os.write(buffer, 0, bytesRead);
-            }
-        } catch (Exception e) {
-            throw new RuntimeException("调用inputStreamToFile出现异常" + e.getMessage());
-        } finally {
-            try {
-                if (os != null) {
-                    os.close();
-                }
-                if (ins != null) {
-                    ins.close();
-                }
-            } catch (IOException e) {
-                throw new RuntimeException("inputStreamToFile关闭io出现异常" + e.getMessage());
-            }
-        }
-    }
+//    private static void inputStreamToFile(InputStream ins, File file) {
+//        OutputStream os = null;
+//        try {
+//            os = new FileOutputStream(file);
+//            int bytesRead = 0;
+//            byte[] buffer = new byte[1024];
+//            while ((bytesRead = ins.read(buffer)) != -1) {
+//                os.write(buffer, 0, bytesRead);
+//            }
+//        } catch (Exception e) {
+//            throw new RuntimeException("调用inputStreamToFile出现异常" + e.getMessage());
+//        } finally {
+//            try {
+//                if (os != null) {
+//                    os.close();
+//                }
+//                if (ins != null) {
+//                    ins.close();
+//                }
+//            } catch (IOException e) {
+//                throw new RuntimeException("inputStreamToFile关闭io出现异常" + e.getMessage());
+//            }
+//        }
+//    }
 
 }

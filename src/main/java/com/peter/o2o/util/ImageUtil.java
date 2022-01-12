@@ -2,6 +2,7 @@ package com.peter.o2o.util;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,14 +22,14 @@ public class ImageUtil {
 	private static final SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
 	private static final Random r = new Random();
 
-	public static String generateThumbnail(CommonsMultipartFile thumbnail, String targetAddr) {
+	public static String generateThumbnail(InputStream thumbnailInputStream, String fileName, String targetAddr) {
 		String realFileName = getRandomFileName();
-		String extension = getFileExtension(thumbnail);
+		String extension = getFileExtension(fileName);
 		makeDirPath(targetAddr);
 		String relativeAddr = targetAddr + realFileName + extension;
 		File dest = new File(PathUtil.getImgBasePath() + relativeAddr);
 		try {
-			Thumbnails.of(thumbnail.getInputStream()).size(200, 200)
+			Thumbnails.of(thumbnailInputStream).size(200, 200)
 					.watermark(Positions.BOTTOM_RIGHT, ImageIO.read(new File(basePath + "/watermark.jpg")), 0.25f)
 					.outputQuality(0.8f).toFile(dest);
 		} catch (IOException e) {
@@ -64,11 +65,11 @@ public class ImageUtil {
 	/**
 	 * 获取输入文件流的拓展名
 	 *
-	 * @param cFile
+	 * @param
 	 * @return
 	 */
-	private static String getFileExtension(CommonsMultipartFile cFile) {
-		String originalFileName = cFile.getOriginalFilename();
-		return originalFileName.substring(originalFileName.lastIndexOf("."));
+	private static String getFileExtension(String fileName) {
+
+		return fileName.substring(fileName.lastIndexOf("."));
 	}
 }
