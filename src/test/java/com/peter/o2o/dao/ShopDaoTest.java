@@ -53,5 +53,12 @@ public class ShopDaoTest extends BaseTest {
         int num = shopDao.updateShop(shop);
         assertEquals(1, num);
     }
+
+    @Test
+    public void testQueryByShopId() {
+        long shopId = 1;
+        Shop shop = shopDao.queryByShopId(shopId);
+        System.out.println(shop.getArea().getAreaName());
+    }
 }
 
