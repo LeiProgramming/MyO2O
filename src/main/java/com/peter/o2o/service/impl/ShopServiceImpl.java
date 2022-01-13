@@ -9,12 +9,14 @@ import com.peter.o2o.service.ShopService;
 import com.peter.o2o.util.ImageUtil;
 import com.peter.o2o.util.PathUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import java.io.InputStream;
 import java.util.Date;
 
+@Service
 public class ShopServiceImpl implements ShopService {
     @Autowired
     private ShopDao shopDao;

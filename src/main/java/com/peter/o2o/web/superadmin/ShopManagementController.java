@@ -4,13 +4,15 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.peter.o2o.dto.ShopExecution;
+import com.peter.o2o.entity.Area;
 import com.peter.o2o.entity.PersonInfo;
 import com.peter.o2o.entity.Shop;
+import com.peter.o2o.entity.ShopCategory;
 import com.peter.o2o.enums.ShopStateEnum;
+import com.peter.o2o.service.AreaService;
+import com.peter.o2o.service.ShopCategoryService;
 import com.peter.o2o.service.ShopService;
 import com.peter.o2o.util.HttpServletRequestUtil;
-import com.peter.o2o.util.ImageUtil;
-import com.peter.o2o.util.PathUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,14 +26,40 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
 @RequestMapping("/shopadmin")
 public class ShopManagementController {
-    @Resource
+    @Autowired
     private ShopService shopService;
+    @Autowired
+    private ShopCategoryService shopCategoryService;
+    @Autowired
+    private AreaService areaService;
+
+    @RequestMapping(value = "/getshopinitinfo", method = RequestMethod.GET)
+    @ResponseBody
+    private Map<String, Object> getShopInitInfo() {
+        Map<String, Object> modelMap = new HashMap<>();
+        List<ShopCategory> shopCategoryList = new ArrayList<>();
+        List<Area> areaList = new ArrayList<>();
+        try {
+            shopCategoryList = shopCategoryService.getShopCategoryList(new ShopCategory());
+            areaList = areaService.getAreaList();
+            modelMap.put("shopCategoryList", shopCategoryList);
+            modelMap.put("areaList", areaList);
+            modelMap.put("success", true);
+        } catch (Exception e) {
+            modelMap.put("success", false);
+            modelMap.put("errorMsg", "输入了错误的验证码");
+
+        }
+        return modelMap;
+    }
 
     @RequestMapping(value = "/registershop", method = RequestMethod.POST)
     @ResponseBody
