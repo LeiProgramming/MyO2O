@@ -18,6 +18,18 @@ public class ShopDaoTest extends BaseTest {
     private ShopDao shopDao;
 
     @Test
+    public void testQueryShopList() {
+        Shop shop = new Shop();
+        PersonInfo personInfo = new PersonInfo();
+        personInfo.setUserId(1l);
+        shop.setOwner(personInfo);
+        List<Shop> shopList = shopDao.queryShopList(shop, 0, 2);
+        int i = shopDao.queryShopCount(shop);
+        System.out.println(shopList.size());
+        System.out.println(i);
+    }
+
+    @Test
     public void testInsertShop() {
         Shop shop = new Shop();
         PersonInfo owner = new PersonInfo();
@@ -60,5 +72,7 @@ public class ShopDaoTest extends BaseTest {
         Shop shop = shopDao.queryByShopId(shopId);
         System.out.println(shop.getArea().getAreaName());
     }
+
+
 }
 

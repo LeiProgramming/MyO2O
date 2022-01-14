@@ -18,5 +18,6 @@ com\peter\o2o\entity\Area.class
 com\peter\o2o\entity\HeadLine.class
 com\peter\o2o\dao\AreaDao.class
 com\peter\o2o\util\PathUtil.class
+com\peter\o2o\util\FileUtil.class
 com\peter\o2o\service\impl\ShopCategoryServiceImpl.class
 com\peter\o2o\util\ImageUtil.class
