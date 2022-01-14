@@ -8,14 +8,14 @@ import com.peter.o2o.entity.Shop;
 import com.peter.o2o.entity.ShopCategory;
 import com.peter.o2o.enums.ShopStateEnum;
 import com.peter.o2o.exception.ShopOperationException;
+import org.apache.commons.io.IOUtils;
 import org.junit.Test;
+import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.annotation.Resource;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.Date;
 
 import static junit.framework.TestCase.assertEquals;
@@ -49,13 +49,12 @@ public class ShopServiceTest extends BaseTest {
 //    }
 
     @Test
-    public void testModifyShop() throws ShopOperationException, FileNotFoundException {
+    public void testModifyShop() throws ShopOperationException, IOException {
         Shop shop = new Shop();
         shop.setShopId(1L);
         shop.setShopName("修改后的");
-        File shopImg = new File("C:\\Users\\Peter\\Desktop\\示意图.jpg");
-        InputStream inputStream = new FileInputStream(shopImg);
-        ShopExecution shopExecution = shopService.modifyShop(shop, inputStream, "watermark.jpg");
+        String filePath = "C:\\Users\\Peter\\Desktop\\示意图.jpg";
+        ShopExecution shopExecution = shopService.modifyShop(shop, path2MultipartFile(filePath));
         System.out.println(shopExecution.getShop().getShopImg());
     }
 
@@ -67,5 +66,45 @@ public class ShopServiceTest extends BaseTest {
         shop.setShopCategory(shopCategory);
         ShopExecution se = shopService.getShopList(shop, 0, 2);
         System.out.println(se.getShopList().size());
+    }
+
+    @Test
+    public void testAddShop() throws IOException {
+        Shop shop = new Shop();
+        PersonInfo owner = new PersonInfo();
+        ShopCategory shopCategory = new ShopCategory();
+        Area area = new Area();
+        owner.setUserId(1L);
+        area.setAreaId(1);
+        shopCategory.setShopCategoryId(1L);
+        shop.setOwner(owner);
+        shop.setShopCategory(shopCategory);
+        shop.setArea(area);
+        shop.setShopAddr("testService");
+        shop.setShopName("test店铺Service");
+        shop.setShopDesc("testService");
+        shop.setShopImg("testService");
+        shop.setPhone("testService");
+        shop.setPriority(1);
+        shop.setCreateTime(new Date());
+        shop.setAdvice("审核中");
+        String filePath = "D:\\soft\\luffy.jpg";
+        ShopExecution se = shopService.addShop(shop, path2MultipartFile(filePath));
+        System.out.println("ShopExecution.state" + se.getState());
+        System.out.println("ShopExecution.stateInfo" + se.getStateInfo());
+    }
+
+    /**
+     * filePath to MultipartFile
+     *
+     * @param filePath
+     * @throws IOException
+     */
+    private MultipartFile path2MultipartFile(String filePath) throws IOException {
+        File file = new File(filePath);
+        FileInputStream input = new FileInputStream(file);
+        MultipartFile multipartFile = new MockMultipartFile("file", file.getName(), "text/plain",
+                IOUtils.toByteArray(input));
+        return multipartFile;
     }
 }

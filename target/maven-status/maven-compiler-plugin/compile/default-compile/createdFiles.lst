@@ -6,6 +6,7 @@ com\peter\o2o\entity\Shop.class
 com\peter\o2o\entity\ShopCategory.class
 com\peter\o2o\web\superadmin\ShopAdminController.class
 com\peter\o2o\entity\ProductCategory.class
+com\peter\o2o\dao\ProductCategoryDao.class
 com\peter\o2o\web\superadmin\ShopManagementController.class
 com\peter\o2o\entity\Product.class
 com\peter\o2o\entity\PersonInfo.class
