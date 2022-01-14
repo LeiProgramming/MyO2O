@@ -7,11 +7,15 @@ import com.peter.o2o.entity.PersonInfo;
 import com.peter.o2o.entity.Shop;
 import com.peter.o2o.entity.ShopCategory;
 import com.peter.o2o.enums.ShopStateEnum;
+import com.peter.o2o.exception.ShopOperationException;
 import org.junit.Test;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.annotation.Resource;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.Date;
 
 import static junit.framework.TestCase.assertEquals;
@@ -43,4 +47,15 @@ public class ShopServiceTest extends BaseTest {
 //        shop.setArea(area);
 //        shop.setShopCategory(sc);
 //    }
+
+    @Test
+    public void testModifyShop() throws ShopOperationException, FileNotFoundException {
+        Shop shop = new Shop();
+        shop.setShopId(1L);
+        shop.setShopName("修改后的");
+        File shopImg = new File("C:\\Users\\Peter\\Desktop\\示意图.jpg");
+        InputStream inputStream = new FileInputStream(shopImg);
+        ShopExecution shopExecution = shopService.modifyShop(shop, inputStream, "watermark.jpg");
+        System.out.println(shopExecution.getShop().getShopImg());
+    }
 }
