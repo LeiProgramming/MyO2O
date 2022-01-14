@@ -1,6 +1,7 @@
 package com.peter.o2o.dao;
 
 import com.peter.o2o.BaseTest;
+import com.peter.o2o.dto.ShopExecution;
 import com.peter.o2o.entity.Area;
 import com.peter.o2o.entity.PersonInfo;
 import com.peter.o2o.entity.Shop;
@@ -16,6 +17,7 @@ import static junit.framework.TestCase.assertEquals;
 public class ShopDaoTest extends BaseTest {
     @Autowired
     private ShopDao shopDao;
+
 
     @Test
     public void testQueryShopList() {
