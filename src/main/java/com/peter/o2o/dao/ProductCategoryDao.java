@@ -8,11 +8,11 @@ import com.peter.o2o.entity.ProductCategory;
 
 public interface ProductCategoryDao {
 	/**
-	 * 通过employee id 查询店铺
-	 *
-	 * @param shopId shopId
-	 * @return List<ProductCategory>
-	 */
+     * 通过shopId id 查询店铺商品类别
+     *
+     * @param shopId shopId
+     * @return List<ProductCategory>
+     */
 	List<ProductCategory> queryByShopId(long shopId);
 
 	/**

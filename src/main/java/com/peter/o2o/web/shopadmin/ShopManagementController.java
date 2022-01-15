@@ -1,4 +1,4 @@
-package com.peter.o2o.web.superadmin;
+package com.peter.o2o.web.shopadmin;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.peter.o2o.dto.ShopExecution;

@@ -19,7 +19,6 @@ public class Product implements Serializable{
 	private Date createTime;
 	private Date lastEditTime;
 	private Integer enableStatus;
-	private Integer point;
 
 	private List<ProductImg> productImgList;
 	private ProductCategory productCategory;
@@ -105,13 +104,6 @@ public class Product implements Serializable{
 		this.enableStatus = enableStatus;
 	}
 
-	public Integer getPoint() {
-		return point;
-	}
-
-	public void setPoint(Integer point) {
-		this.point = point;
-	}
 
 	public List<ProductImg> getProductImgList() {
 		return productImgList;

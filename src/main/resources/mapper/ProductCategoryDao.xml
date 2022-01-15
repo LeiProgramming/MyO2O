@@ -13,7 +13,6 @@
         product_category_desc,
         priority,
         create_time,
-        last_edit_time,
         shop_id
         FROM
         tb_product_category
@@ -27,7 +26,7 @@
         </selectKey>
         INSERT INTO
         tb_product_category(product_category_name,product_category_desc,priority,
-        create_time,last_edit_time,shop_id)
+        create_time,shop_id)
         VALUES
         <foreach collection="list" item="productCategory" index="index"
                  separator=",">
@@ -36,7 +35,6 @@
             #{productCategory.productCategoryDesc},
             #{productCategory.priority},
             #{productCategory.createTime},
-            #{productCategory.lastEditTime},
             #{productCategory.shopId}
             )
         </foreach>

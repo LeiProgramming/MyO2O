@@ -41,4 +41,5 @@
         WHERE product_id = #{productId}
         ORDER BY product_img_id
     </select>
+
 </mapper>
