@@ -34,7 +34,7 @@ public class ShopServiceImpl implements ShopService {
             se.setShopList(shopList);
             se.setCount(count);
         } else {
-            se.setState(ShopStateEnum.INNER_ERROR.getState());
+            se.setState(ShopStateEnum.EDIT_ERROR.getState());
         }
         return se;
     }
@@ -48,7 +48,7 @@ public class ShopServiceImpl implements ShopService {
     @Transactional
     public ShopExecution modifyShop(Shop shop, MultipartFile shopImg) throws ShopOperationException {
         if (shop == null || shop.getShopId() == null) {
-            return new ShopExecution(ShopStateEnum.NULL_SHOP);
+            return new ShopExecution(ShopStateEnum.NULL_SHOP_INFO);
         } else {
             try {
                 //1.判断是否需要处理图片
@@ -66,10 +66,10 @@ public class ShopServiceImpl implements ShopService {
                 shop.setLastEditTime(new Date());
                 int effectedNum = shopDao.updateShop(shop);
                 if (effectedNum <= 0) {
-                    return new ShopExecution(ShopStateEnum.INNER_ERROR);
+                    return new ShopExecution(ShopStateEnum.EDIT_ERROR);
                 } else {
                     shop = shopDao.queryByShopId(shop.getShopId());
-                    return new ShopExecution(ShopStateEnum.SUCCESS);
+                    return new ShopExecution(ShopStateEnum.PASS);
                 }
             } catch (Exception e) {
                 throw new ShopOperationException("modifyShop error." + e.getMessage());
@@ -83,28 +83,28 @@ public class ShopServiceImpl implements ShopService {
     public ShopExecution addShop(Shop shop, MultipartFile shopImg) {
         // 空值判断
         if (shop == null) {
-            return new ShopExecution(ShopStateEnum.NULL_SHOP);
+            return new ShopExecution(ShopStateEnum.NULL_SHOP_INFO);
         } else {
             try {
                 // 初始化赋值
                 shop.setCreateTime(new Date());
-                shop.setEnableStatus(ShopStateEnum.SUCCESS.getState());
+                shop.setEnableStatus(ShopStateEnum.PASS.getState());
                 // 添加店铺信息
                 int effectedNum = shopDao.insertShop(shop);
                 // 添加店铺失败
                 if (effectedNum <= 0) {
-                    return new ShopExecution(ShopStateEnum.INNER_ERROR);
+                    return new ShopExecution(ShopStateEnum.EDIT_ERROR);
                 } else {
                     try {
                         // 空值判断
                         if (shopImg == null) {
-                            return new ShopExecution(ShopStateEnum.INNER_ERROR);
+                            return new ShopExecution(ShopStateEnum.EDIT_ERROR);
                         } else {
                             // 存储图片
                             addShopImg(shop, shopImg);
                             effectedNum = shopDao.updateShop(shop);
                             if (effectedNum <= 0) {
-                                return new ShopExecution(ShopStateEnum.INNER_ERROR);
+                                return new ShopExecution(ShopStateEnum.EDIT_ERROR);
                             }
                         }
                     } catch (Exception e) {

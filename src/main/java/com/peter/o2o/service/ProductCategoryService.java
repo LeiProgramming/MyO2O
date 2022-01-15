@@ -9,13 +9,13 @@ public interface ProductCategoryService {
 	/**
 	 * 查询指定某个店铺下的所有商品类别信息
 	 *
-	 * @param long shopId
+	 * @param shopId
 	 * @return List<ProductCategory>
 	 */
 	List<ProductCategory> getByShopId(long shopId);
 
 	/**
-	 * @param productCategory
+	 * @param
 	 * @return
 	 * @throws RuntimeException
 	 */

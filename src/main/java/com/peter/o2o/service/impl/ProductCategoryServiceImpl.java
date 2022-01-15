@@ -38,7 +38,7 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 				} else {
 
 					return new ProductCategoryExecution(
-							ProductCategoryStateEnum.SUCCESS);
+							ProductCategoryStateEnum.EMPETY_LIST);
 				}
 
 			} catch (Exception e) {
@@ -47,7 +47,7 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 			}
 		} else {
 			return new ProductCategoryExecution(
-					ProductCategoryStateEnum.INNER_ERROR);
+					ProductCategoryStateEnum.EDIT_ERROR);
 		}
 
 	}
@@ -73,7 +73,7 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 				throw new RuntimeException("店铺类别删除失败");
 			} else {
 				return new ProductCategoryExecution(
-						ProductCategoryStateEnum.SUCCESS);
+						ProductCategoryStateEnum.EMPETY_LIST);
 			}
 
 		} catch (Exception e) {

@@ -49,13 +49,13 @@ public class ShopServiceTest extends BaseTest {
 //    }
 
     @Test
-    public void testModifyShop() throws ShopOperationException, IOException {
+    public void testModifyShop() throws IOException {
         Shop shop = new Shop();
         shop.setShopId(1L);
-        shop.setShopName("修改后的");
-        String filePath = "C:\\Users\\Peter\\Desktop\\示意图.jpg";
-        ShopExecution shopExecution = shopService.modifyShop(shop, path2MultipartFile(filePath));
-        System.out.println(shopExecution.getShop().getShopImg());
+        shop.setShopName("修改店铺测试");
+        String filePath = "D:\\luffy.jpg";
+        shopService.modifyShop(shop, path2MultipartFile(filePath));
+        System.out.println("修改后图片：" + shop.getShopImg());
     }
 
     @Test

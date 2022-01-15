@@ -86,7 +86,7 @@ public class ShopManagementController {
         // 校验验证码
         if (!CodeUtil.checkVerifyCode(request)) {
             modelMap.put("success", false);
-            modelMap.put("errMsg", ShopStateEnum.INNER_ERROR);
+            modelMap.put("errMsg", ShopStateEnum.EDIT_ERROR);
             return modelMap;
         }
 
@@ -113,7 +113,7 @@ public class ShopManagementController {
         }
         if (shopImg == null) {
             modelMap.put("success", false);
-            modelMap.put("errMsg", ShopStateEnum.INNER_ERROR.getStateInfo());
+            modelMap.put("errMsg", ShopStateEnum.EDIT_ERROR.getStateInfo());
             return modelMap;
         }
 
@@ -141,7 +141,7 @@ public class ShopManagementController {
             return modelMap;
         } else {
             modelMap.put("success", false);
-            modelMap.put("errMsg", ShopStateEnum.NULL_SHOP.getStateInfo());
+            modelMap.put("errMsg", ShopStateEnum.NULL_SHOPID.getStateInfo());
             return modelMap;
         }
     }
@@ -190,7 +190,7 @@ public class ShopManagementController {
         // 校验验证码
         if (!CodeUtil.checkVerifyCode(request)) {
             modelMap.put("success", false);
-            modelMap.put("errMsg", ShopStateEnum.INNER_ERROR);
+            modelMap.put("errMsg", ShopStateEnum.EDIT_ERROR);
             return modelMap;
         }
 
@@ -218,7 +218,7 @@ public class ShopManagementController {
         // 2、修改店铺，尽量不要依靠前端信息
         if (shop != null && shop.getShopId() > 0) {
             ShopExecution se = shopService.modifyShop(shop, shopImg);
-            if (se.getState() == ShopStateEnum.SUCCESS.getState()) {
+            if (se.getState() == ShopStateEnum.PASS.getState()) {
                 modelMap.put("success", true);
             } else {
                 modelMap.put("success", false);

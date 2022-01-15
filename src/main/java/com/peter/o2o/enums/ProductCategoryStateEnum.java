@@ -1,12 +1,26 @@
+/**
+ *
+ */
 package com.peter.o2o.enums;
 
+/**
+ * @Description: 商品类别状态枚举
+ * @author: tyron
+ * @date: 2018年9月22日
+ */
+
 public enum ProductCategoryStateEnum {
-	SUCCESS(1, "创建成功"), INNER_ERROR(-1001, "操作失败"), EMPTY_LIST(-1002, "添加数少于1");
+
+	NULL_SHOP(-2001, "Shop信息为空"), EMPETY_LIST(-2002, "请输入商品目录信息"), DELETE_ERROR(-2003, "商品类别删除失败"), EDIT_ERROR(-2004, "商品类别编辑失败");
 
 	private int state;
-
 	private String stateInfo;
 
+	/**
+	 * @param state
+	 * @param stateInfo
+	 * @Description:构造函数
+	 */
 	private ProductCategoryStateEnum(int state, String stateInfo) {
 		this.state = state;
 		this.stateInfo = stateInfo;
@@ -20,10 +34,15 @@ public enum ProductCategoryStateEnum {
 		return stateInfo;
 	}
 
+	/**
+	 * @param index
+	 * @Description: 通过state获取productCategoryStateEnum, 从而可以调用ProductCategoryStateEnum
+	 * #getStateInfo()获取stateInfo
+	 */
 	public static ProductCategoryStateEnum stateOf(int index) {
-		for (ProductCategoryStateEnum state : values()) {
-			if (state.getState() == index) {
-				return state;
+		for (ProductCategoryStateEnum productCategoryStateEnum : values()) {
+			if (productCategoryStateEnum.getState() == index) {
+				return productCategoryStateEnum;
 			}
 		}
 		return null;

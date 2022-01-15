@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class PersonInfo {
     private Long userId;
+    private Long localAuthId;
     private String name;
     private String profileImg;
     private String email;
@@ -13,6 +14,14 @@ public class PersonInfo {
     private Integer userType;
     private Date createTime;
     private Date lastEditTime;
+
+    public Long getLocalAuthId() {
+        return localAuthId;
+    }
+
+    public void setLocalAuthId(Long localAuthId) {
+        this.localAuthId = localAuthId;
+    }
 
     public Long getUserId() {
         return userId;

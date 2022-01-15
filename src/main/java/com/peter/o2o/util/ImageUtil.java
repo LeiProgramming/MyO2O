@@ -17,7 +17,7 @@ import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.geometry.Positions;
 
 /**
- * @author tyronchen
+ * @author peter
  * @Description: 图片处理工具类
  * @date 2018年4月10日
  */
@@ -205,9 +205,9 @@ public class ImageUtil {
 	 */
 	public static void main(String[] args) {
 		try {
-			Thumbnails.of(new File("F:\\luffy.jpg")).size(400, 300)
+			Thumbnails.of(new File("D:\\luffy.jpg")).size(400, 300)
 					.watermark(Positions.BOTTOM_RIGHT, ImageIO.read(new File(basePath + "watermark.jpg")), 0.5f)
-					.outputQuality(0.8).toFile(new File("F:\\luffy-with-watermark.jpg"));
+					.outputQuality(0.8).toFile(new File("D:\\luffy-with-watermark.jpg"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
