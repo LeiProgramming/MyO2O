@@ -69,7 +69,7 @@ public class ProductManagementController {
             Product product = productService.getProductById(productId);
             // 获取该店铺下商品类别列表
             List<ProductCategory> productCategoryList = productCategoryService
-                    .getByShopId(product.getShop().getShopId());
+                    .getProductCategoryList(product.getShop().getShopId());
             modelMap.put("product", product);
             modelMap.put("productCategoryList", productCategoryList);
             modelMap.put("success", true);

@@ -1,4 +1,5 @@
 com\peter\o2o\enums\OperationStatusEnum.class
+com\peter\o2o\service\HeadLineService.class
 com\peter\o2o\exception\LocalAuthOperationException.class
 com\peter\o2o\util\HttpServletRequestUtil.class
 com\peter\o2o\service\ShopCategoryService.class
@@ -12,6 +13,7 @@ com\peter\o2o\dao\ProductImgDao.class
 com\peter\o2o\dto\ProductExecution.class
 com\peter\o2o\entity\PersonInfo.class
 com\peter\o2o\service\AreaService.class
+com\peter\o2o\web\front\FrontController.class
 com\peter\o2o\web\shopadmin\ProductManagementController.class
 com\peter\o2o\exception\HeadLineOperationException.class
 com\peter\o2o\entity\WechatAuth.class
@@ -33,6 +35,7 @@ com\peter\o2o\service\impl\ShopCategoryServiceImpl.class
 com\peter\o2o\util\ImageUtil.class
 com\peter\o2o\web\superadmin\AreaController.class
 com\peter\o2o\entity\ProductImg.class
+com\peter\o2o\web\front\ShopDetailController.class
 com\peter\o2o\enums\ShopCategoryStateEnum.class
 com\peter\o2o\dao\PersonInfoDao.class
 com\peter\o2o\dto\LocalAuthExecution.class
@@ -42,9 +45,13 @@ com\peter\o2o\entity\Product.class
 com\peter\o2o\enums\PersonInfoStatusEnum.class
 com\peter\o2o\enums\LocalAuthStateEnum.class
 com\peter\o2o\util\CodeUtil.class
+com\peter\o2o\web\front\ShopListController.class
 com\peter\o2o\enums\ProductStateEnum.class
 com\peter\o2o\enums\PersonInfoTypeEnum.class
 com\peter\o2o\service\impl\AreaServiceImpl.class
 com\peter\o2o\dao\LocalAuthDao.class
+com\peter\o2o\service\impl\HeadLineServiveImpl.class
 com\peter\o2o\dto\PersonInfoExecution.class
 com\peter\o2o\util\FileUtil.class
+com\peter\o2o\web\front\MainPageController.class
+com\peter\o2o\web\front\ProductDetailController.class

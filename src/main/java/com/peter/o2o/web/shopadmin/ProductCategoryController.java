@@ -49,7 +49,7 @@ public class ProductCategoryController {
         Shop currentShop = (Shop) request.getSession().getAttribute("currentShop");
         if (currentShop != null && currentShop.getShopId() != null) {
             try {
-                productCategoryList = productCategoryService.getByShopId(currentShop.getShopId());
+                productCategoryList = productCategoryService.getProductCategoryList(currentShop.getShopId());
                 return new Result<List<ProductCategory>>(true, productCategoryList);
             } catch (Exception e) {
                 e.printStackTrace();

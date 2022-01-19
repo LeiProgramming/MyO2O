@@ -7,12 +7,12 @@ import com.peter.o2o.entity.ProductCategory;
 
 public interface ProductCategoryService {
 	/**
-	 * 查询指定某个店铺下的所有商品类别信息
+	 * 查询指定某个店铺下的所有商品列表信息
 	 *
 	 * @param shopId
-	 * @return List<ProductCategory>
+	 * @return
 	 */
-	List<ProductCategory> getByShopId(long shopId);
+	List<ProductCategory> getProductCategoryList(Long shopId);
 
 	/**
 	 * @param
